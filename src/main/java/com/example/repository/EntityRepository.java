@@ -1,4 +1,7 @@
 package com.example.repository;
 
-public class EntityRepository {
+import com.example.model.EntityModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EntityRepository extends JpaRepository<EntityModel,Long> {
 }
