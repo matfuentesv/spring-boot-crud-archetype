@@ -1,4 +1,4 @@
 package com.example.service.impl;
 
-public class ServiceImpl {
+public class EntityServiceImpl {
 }
