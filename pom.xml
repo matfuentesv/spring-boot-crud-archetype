@@ -5,12 +5,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.4</version>
-        <!-- lookup parent from repository -->
+
     </parent>
     <groupId>com.example</groupId>
     <artifactId>spring-boot-crud-archetype</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>spring-boot-crud-archetype</name>
     <url>maven.apache.org</url>
     <properties>

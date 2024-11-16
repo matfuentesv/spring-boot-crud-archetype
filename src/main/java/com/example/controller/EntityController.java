@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.exception.ErrorResponse;
+import com.example.exception.ApiResponse;
 import com.example.model.EntityModel;
 import com.example.service.EntityService;
 import jakarta.validation.Valid;
@@ -13,7 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -36,7 +35,7 @@ public class EntityController {
 
         if (StringUtils.containsWhitespace(String.valueOf(id))|| id == null) {
             log.info("El id no se ingreso");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
         }
         return ResponseEntity.ok(entityService.findEntity(id));
     }
@@ -47,7 +46,7 @@ public class EntityController {
 
         if (entityModel == null) {
             log.info("Algunos de los parámetros no se ingresaron");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
         }
 
         if (bindingResult.hasErrors()) {
@@ -64,7 +63,7 @@ public class EntityController {
 
         if (entityModel == null) {
             log.info("Algunos de los parámetros no se ingresaron");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
         }
 
         if (bindingResult.hasErrors()) {
@@ -79,7 +78,7 @@ public class EntityController {
 
         if (StringUtils.containsWhitespace(String.valueOf(id))|| id == null) {
             log.info("El id no se ingreso");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
         }
 
 
@@ -87,10 +86,10 @@ public class EntityController {
 
         if (entityModel != null) {
             entityService.deleteEntity(id);
-            return ResponseEntity.ok(new ErrorResponse("Entidad eliminada"));
+            return ResponseEntity.ok(new ApiResponse("Entidad eliminada",true));
         } else {
             log.info("Entidad no encontrado con id: " + id);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Entidad no encontrado"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Entidad no encontrado",false));
         }
     }
 
